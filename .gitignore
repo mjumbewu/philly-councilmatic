@@ -1,0 +1,37 @@
+*.pyc
+*~
+*.swn
+*.swo
+*.swp
+*.sqlite3
+\#*\#
+.\#*
+.DS_Store
+nohup.out
+
+# Compass-generated stuff
+.sass-cache/
+stylesheets/
+
+# The whoosh_index (assuming it will create the dir automatically)
+whoosh_index/
+
+# Log files
+logs/
+
+# The virtual environment
+.env/
+env/
+
+# Code coverage data
+.coverage
+
+# Application keys
+application_keys.py
+
+# Local settings
+local_settings.py
+
+/static
+crons/daily_jobs
+crons/weekly_jobs

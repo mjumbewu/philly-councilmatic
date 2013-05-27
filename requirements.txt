@@ -1,0 +1,4 @@
+# ====================
+# The Councilmatic App
+# ====================
+git+git://github.com/codeforamerica/councilmatic.git#egg=councilmatic
