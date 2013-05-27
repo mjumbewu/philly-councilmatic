@@ -74,8 +74,6 @@ STATIC_ROOT = rel_path('..', 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    rel_path('customizations/static'),
-    rel_path('static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -122,9 +120,6 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or
     # "C:/www/django/templates". Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    rel_path('phillyleg'),
-    rel_path('customizations/templates'),
-    rel_path('templates'),
     
 )
 
