@@ -220,7 +220,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.comments',
     'django.contrib.gis',
-) + COMMUNITY_APPS + COUNCILMATIC_APPS + PROJECT_SPECIFIC_APPS
+) + PROJECT_SPECIFIC_APPS + COUNCILMATIC_APPS + COMMUNITY_APPS
 
 ################################################################################
 #

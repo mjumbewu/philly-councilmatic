@@ -1,0 +1,97 @@
+.hero-unit {
+  padding: 20px;
+}
+
+@media (min-width: 980px) {
+  #wrap > .container-fluid {
+    padding-top: 0;
+  }
+}
+
+#dashboard-search input[name='q'] {
+  /* @largeRatio: @fontSizeLarge/@baseFontSize; */
+
+  font-size: 18px;  /* @fontSizeLarge; */
+  line-height: 25px;  /* @baseLineHeight * @largeRatio; */
+  height: 37.5px;  /* @inputHeight * @largeRatio; */
+}
+
+.map-wrapper {
+  border: 1px solid #eee;
+}
+
+#map,
+.tenure-map {
+  min-height: 300px;
+}
+
+#map img {
+  max-width: none;
+}
+
+.ctrlHolder li {
+  list-style: none;
+}
+
+/* ----- */
+
+body {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif !important;
+  background-color: #eeeeee;
+}
+
+.hero-unit,
+.well {
+  background-color: white;
+  border: 1px #cecece solid;
+}
+
+@media (min-width: 980px) {
+  .container-fluid {
+    margin-left: 120px;
+    margin-right: 120px;
+  }
+
+  .navbar-inner {
+    height: 65px;
+    border-radius: 0px;
+  }
+
+  .navbar {
+    line-height: 42px;
+  }
+
+  .navbar li {
+    line-height: 42px;
+  }
+}
+
+.navbar-inner {
+  background: url(../philly/headerBG.jpg);
+  border: none;
+}
+
+.navbar .brand {
+  color: white;
+  text-shadow: none;
+  font-weight: bold;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.navbar .nav > li > a {
+  color: white;
+  text-shadow: none;
+  text-decoration: underline;
+}
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  color: white;
+}
+
+.preheader {
+  height: 26px;
+  background: #373737;
+  border-bottom: 1px solid #e3e3e3;
+}
