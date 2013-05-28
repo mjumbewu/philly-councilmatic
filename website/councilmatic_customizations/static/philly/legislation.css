@@ -1,0 +1,293 @@
+.legfile_detail_wrapper {
+    width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.legfile_intro_date.instance_field > span,
+.legfile_final_date.instance_field > span {
+  display: inline;
+}
+
+.legfile_detail .instance_field_label {
+    font-weight: bold;
+    display: block;
+}
+
+.legfile_detail .instance_field {
+    margin-bottom: 1em;
+}
+
+/* ====================================
+ * Lay out the main section
+ */
+
+.legfile_detail {
+  margin-left: 62px;
+}
+
+#main .block .content .legfile_detail h1 {
+  margin-bottom: 0em;
+}
+
+#main .block .content .legfile_detail h2 {
+  margin-left: 0px;
+  margin-top: 0em;
+  font-size: 1.2em;
+  font-weight: normal;
+}
+
+.legfile_text p {
+  margin-right: 62px;
+}
+
+.legfile_overview_bar {
+  clear: both;
+  margin: 1em 0em;
+  margin-left: -62px;
+  border: 1px solid #ccc;
+  border-width: 1px 0px;
+  padding: 5px 0px;
+}
+
+.legfile_overview_bar > span {
+  margin-left: 20px;
+}
+
+.legfile_overview_bar > span:first-child {
+  margin-left: 0px;
+}
+
+.legfile_original_url {
+  text-align: right;
+}
+
+.legfile_attachments {
+  padding-left: 36px;
+  padding-top: 10px;
+  margin-left: -10px;
+
+  background-image: url('/static/phillyleg/attachment.svg');
+  background-repeat: no-repeat;
+  background-attachment: 0% 0%;
+  min-height: 36px;
+}
+
+.legfile_attachments ul {
+  list-style: none;
+}
+
+.legfile_attachments p {
+  margin: 0px;
+}
+
+/* ========================================
+ * The opinions
+ */
+
+.uniForm .buttonHolder {
+  background: none;
+  margin: 0px;
+  padding: 1em;
+}
+
+.uniForm .ctrlHolder {
+  border-color: grey;
+}
+
+#main #opinions {
+  display: table;
+  width: 100%;
+  padding: 0px;
+  margin: inherit 0px;
+
+  background: transparent;
+  box-shadow: none;
+  -mox-box-shadow: none;
+}
+
+#opinions .content {
+  display: table-row;
+}
+
+#opinions .content .opinions {
+  display: table-cell;
+  vertical-align: top;
+  border-left: 1px solid grey;
+  width: 33%;
+  padding: 0px;
+  margin: 0px;
+
+  background-repeat: no-repeat;
+  background-position: 50% 0%;
+  padding-top: 50px;
+}
+
+#opinions .content .opinions:first-child {
+  border: none;
+}
+
+.opinions.support {
+  background-image: url('/static/phillyleg/support.svg');
+}
+
+.opinions.abstain {
+  background-image: url('/static/phillyleg/abstain.svg');
+}
+
+.opinions.oppose {
+  background-image: url('/static/phillyleg/oppose.svg');
+}
+
+#opinions .content .opinions ul {
+  list-style: none;
+  padding: 1em;
+}
+
+.opinions blockquote {
+  padding-left: 1em;
+  font-size: 1.2em;
+  line-height: 1.5em;
+
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+
+  min-height: 20px;
+  background-image: url('/static/phillyleg/statement.svg');
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+}
+
+.opinions .opiner {
+  display: block;
+  text-align: right;
+}
+
+.opinions .opiner:before {
+  content: '- ';
+}
+
+/* ========================================
+ * Lay out the sponsoring councilmember faces
+ */
+h2 ul.legfile_sponsors {
+  list-style: none;
+  display: inline;
+}
+
+h2 ul.legfile_sponsors li {
+  display: inline;
+}
+
+h2 ul.legfile_sponsors li img {
+  vertical-align: middle;
+}
+
+/* ========================================
+ * Bookmarks
+ */
+.bookmark {
+    float: left;
+    margin-top: -16px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+
+    width: 42px;
+    height: 76px;
+}
+
+.bookmark button:hover {
+    cursor: pointer;
+}
+
+.bookmark.active img {
+/*  background-image: url(../bookmarks/bookmark_active.png);*/
+    width: 42px;
+}
+
+.bookmark.inactive img {
+/*  background-image: url(../bookmarks/bookmark.png);*/
+    width: 42px;
+}
+
+.bookmark a,
+.bookmark button {
+  display: block;
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+ * The timeline
+ */
+
+#main #timeline {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.field_label.instance_field_label.legminutes_url_label,
+.field_label.instance_field_label.legaction_description_label,
+.field_label.instance_field_label.legaction_acting_body_label,
+.field_label.instance_field_label.legaction_file_label,
+.field_label.instance_field_label.legaction_date_taken_label {
+  display: none;
+}
+
+.field.instance_field.legaction_acting_body,
+.field.instance_field.legaction_description,
+.field.instance_field.legaction_file,
+.field.instance_field.legaction_date_taken,
+.field.instance_field.legaction_motion {
+  display: inline;
+}
+
+.field.instance_field.legaction_date_taken {
+  font-weight: bold;
+}
+
+.field.instance_field.legaction_date_taken:after {
+  content: ' - ';
+  font-weight: normal;
+}
+
+.field_value.instance_field_value.legaction_acting_body_value {
+  text-transform: lowercase;
+}
+
+.detail.legaction_detail:first-letter {
+  text-transform: uppercase;
+}
+
+.field_value.instance_field_value.legaction_description_value {
+  text-transform: lowercase;
+  font-weight: bold;
+}
+
+.instance_header.legaction_header {
+  display: none;
+}
+
+.field.instance_field.legaction_motion {
+  font-style: italic;
+}
+
+.field.instance_field.legaction_motion:before {
+  content: ' - ';
+}
+
+.field_label.instance_field_label.legaction_motion_label:after {
+  content: ':';
+}
+
+.list_item .wrapper {
+  padding: 0em;
+  padding-left: 50px;
+}
+

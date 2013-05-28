@@ -1,0 +1,37 @@
+.field_label.instance_field_label.legminutes_url_label,
+.field_label.instance_field_label.legaction_description_label,
+.field_label.instance_field_label.legaction_acting_body_label,
+.field_label.instance_field_label.legaction_file_label {
+  display: none;
+}
+
+.field.instance_field.legaction_acting_body,
+.field.instance_field.legaction_description,
+.field.instance_field.legaction_file {
+  display: inline;
+}
+
+.field_value.instance_field_value.legaction_acting_body_value {
+  text-transform: lowercase;
+}
+
+.detail.legaction_detail:first-letter {
+  text-transform: uppercase;
+}
+
+.field_value.instance_field_value.legaction_description_value {
+  text-transform: lowercase;
+  font-weight: bold;
+}
+
+.instance_header.legaction_header {
+  display: none;
+}
+
+.field.instance_field.legaction_motion {
+  font-style: italic;
+}
+
+.field_label.instance_field_label.legaction_motion_label:after {
+  content: ':';
+}
