@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load i18n %}
+{% load compress %}
+
+{% block load_early %}
+{% endblock %}
+
+{% block content %}
+<div class="councilmember-detail dashboard">
+  <div class='row-fluid'>
+    <div class='offset1 span10'>
+      <div class="content">
+        <div class="row-fluid">
+          <img class='span2 img-polaroid' alt="{{ councilmember.name }}" src="{{STATIC_URL}}{{ councilmember.headshot }}">
+          <div class='span8'>
+            <h1>
+              {{ councilmember.name }}
+              <small><br />{{ councilmember.title }}</small>
+            </h1>
+
+            {% include 'subscriptions/subscribe_form.html' with subscribe_text=_('Follow this person') unsubscribe_text=_('Stop following this person') %}
+
+          </div>
+
+        </div>
+        <hr />
+
+        <div class="row-fluid">
+          <!------------------------------------------------------
+            -- The council member's recently sponsored legislation
+            -->
+          <div id="dashboard_legislation" class="councilmember-legislation span6">
+            <h2>{% trans "Recent Legislation" %}</h2>
+
+            {% include "councilmatic/partials/legfile_list.html" %}
+
+            <a href="{% url 'search' %}?sponsors={{ councilmember.name }}">{% trans "More..." %}</a>
+          </div>
+
+          <!-------------------------------------------------------
+            -- The council member's district geograph(y/ies)
+            -->
+          <script type="text/javascript"
+              src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+          <script src="{{ STATIC_URL}}libs/GeoJSON.js"></script>
+
+          <div class="councilmember-tenures span6">
+            {% for tenure in councilmember.tenures.all %}
+            <div class="councilmember-districts">
+              <h2>
+              {% if tenure.at_large %}
+                {% trans "At Large" %}
+              {% else %}
+                {% blocktrans %}Representing District {{ tenure.district.id }}{% endblocktrans %}
+              {% endif %}
+
+              {% if tenure.president %}
+                <br>{% trans "Serving as Council President" %}
+              {% endif %}
+              </h2>
+
+              {% if tenure.end %}
+                <h3>{% blocktrans %}From {{ tenure.begin }} until {{ tenure.end }}{% endblocktrans %}</h3>
+              {% else %}
+                <h3>{% blocktrans %}Since {{ tenure.begin }}{% endblocktrans %}</h3>
+              {% endif %}
+
+              {% if not tenure.at_large %}
+                <div class="map-wrapper">
+                  <div id="tenure-{{ tenure.pk }}-map" class="tenure-map">
+                  </div>
+                </div>
+
+                <script type="text/javascript">
+                  var map;
+                  var initialize = function() {
+                    var myOptions = {
+                          zoom: 10,
+                          center: new google.maps.LatLng(40.006054, -75.147858),
+                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                        },
+                        latlngs = [];
+
+                    map = new google.maps.Map(document.getElementById('tenure-{{ tenure.pk }}-map'),
+                        myOptions);
+
+                    var districtOptions = {
+                        map: map,
+                        title: "District {{ tenure.district.id }}"
+                    }
+                    var districtVector = new GeoJSON({{ tenure.district.shape.json|default:'{ "type": "Polygon", "coordinates": [] }'|safe }}, districtOptions);
+                    zoomToFitVector(map, districtVector.getPath())
+                  };
+
+                  var zoomToFitVector = function(map, path) {
+                    //  Create a new viewpoint bound
+                    var bounds = new google.maps.LatLngBounds ();
+                    //  Go through each...
+                    for (var i = 0, numlatlngs = path.b.length; i < numlatlngs; i++) {
+                      //  And increase the bounds to take this point
+                      bounds.extend (path.b[i]);
+                    }
+                    //  Fit these bounds to the map
+                    map.fitBounds (bounds);
+                  };
+
+                  google.maps.event.addDomListener(window, 'load', initialize);
+                </script>
+              {% endif %}
+
+              <hr>
+
+            </div> <!-- .councilmember-districts -->
+            {% endfor %}
+
+            <h2>Sponsored legislation by topic</h2>
+            {% for topic in recent_topics %}
+              <h4>{{topic.leg_count}} <a href='/search?q=&topics={{topic.topic}}&sponsors={{ councilmember.name }}'>{{topic.topic}}</a></h4>
+            {% endfor %}
+
+          </div> <!-- .councilmember-tenures -->
+
+        </div> <!-- .row-fluid -->
+
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>
+
+{% block load_late %}
+{% endblock %}

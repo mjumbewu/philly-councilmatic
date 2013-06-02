@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% load model_blocks %}
+{% load uni_form_tags %}
+{% load url from future %}
+{% load comments %}
+{% load compress %}
+
+{% block title %}{{ object.title|truncatewords:14 }}{% endblock %}
+{% block load_early %}
+<!--  <link rel="stylesheet" href="{{ STATIC_URL }}phillyleg/legislation.css">-->
+{% endblock %}
+
+{% block content %}
+
+  <section id="main" >
+    <div class='row-fluid'>
+      <div class='offset1 span10'>
+	<span class="pull-right legislation_bookmark">
+	  {% include "councilmatic/partials/bookmark_button.html" %}
+        </span>
+	
+	      <h1>
+          {{ object.type }} {{ object.id }}
+          <small>
+            {% if object.controlling_body != '' %}
+              <br />Controlled by {{ object.controlling_body }}
+            {% endif %}
+          </small>
+        </h1>
+          {% for topic in object.metadata.topics.all %}
+	    <a href="/search/?q=&topics={{ topic.topic }}"><span class="label {{ topic.get_label }}">{{ topic.topic }}</span></a>
+          {% endfor %}
+	      <hr />
+      </div>
+
+    <div class='row-fluid'>
+      <div class='offset1 span6'>
+
+        <h4>Description</h4>
+        <p>{{ object.title|linebreaksbr }}</p>
+
+        <p>Read the full {{legfile.type}}:
+        {% for attachment in object.attachments.all %}
+            <a href="{{ attachment.url }}">{{ attachment.description }}</a>
+        {% empty %}
+          <p>(No attachments)</p>
+        {% endfor %}
+	</p>
+
+        <h4>Actions</h4>
+        {% for action in object.actions.all %}
+
+            {% if forloop.first %}<ul class='unstyled'>{% endif %}
+                <li>
+                    {% if action.minutes.url %}
+                    {% ifchanged action.minutes.url %}
+                        <a href="{{ action.minutes.url }}">(minutes)</a>
+                    {% endifchanged %}
+                    {% endif %}
+
+                    {% ifchanged action.date_taken %}
+                      {{ action.date_taken }}:&nbsp;
+                    {% endifchanged %}
+
+		    <span class='label {{action.get_label}}'>{{ action.description }}</span>
+                    by
+		    {{ action.acting_body }}
+                    {% if action.notes %} {{ action.notes }} {% endif %}
+                </li>
+            {% if forloop.last %}</ul>{% endif %}
+
+        {% empty %}
+
+          <p>(No actions taken)</p>
+
+        {% endfor %}
+
+        {% if object.metadata.mentioned_legfiles.all %}
+            <h4>Bills mentioned in this legislation</h4>
+            <ul class="unstyled">
+              {% for mentioned_legfile in object.metadata.mentioned_legfiles.all %}
+                <li><a href="{{ mentioned_legfile.get_absolute_url }}">{{ mentioned_legfile }}</a></li>
+              {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if object.references_in_legislation.all %}
+            <h4>Legislation that mentions this bill</h4>
+            <ul class="unstyled">
+              {% for referencing_legfile_metadata in object.references_in_legislation.all %}
+                <li><a href="{{ referencing_legfile_metadata.legfile.get_absolute_url }}">{{ referencing_legfile_metadata.legfile }}</a></li>
+              {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if object.metadata.valid_locations.all %}
+            <h4>Locations mentioned in this bill</h4>
+            <img src="http://maps.googleapis.com/maps/api/staticmap?size=256x256&maptype=roadmap{% for location in object.metadata.valid_locations.all %}&markers={{ location.geom.y }},{{ location.geom.x }}{% endfor %}&sensor=false">
+            <ul class="unstyled">
+              {% for location in object.metadata.locations.all %}
+                <li><a href="http://maps.google.com/maps?q={{ location.address|urlencode }}{{ settings.LEGISLATION.ADDRESS_SUFFIX }}">
+                  {{ location.address }}{{ settings.LEGISLATION.ADDRESS_SUFFIX }}</a></li>
+              {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if support_opinions %}
+            <hr />
+            <h4>Comments</h4>
+	    {% for opinion in support_opinions %}
+              {% if forloop.first %}<ul class='unstyled'>{% endif %}
+                <li>
+                  <span class="label label-success">Support</span>
+                  "{{ opinion.latest.statement }}"
+                  - {{ opinion.opiner.username }}
+                </li>
+              {% if forloop.last %}</ul>{% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if abstain_opinions %}
+            {% for opinion in abstain_opinions %}
+              {% if forloop.first %}<ul class='unstyled'>{% endif %}
+                <li>
+                  <span class="label label-info">Abstain</span>
+                  "{{ opinion.latest.statement }}"
+                  - {{ opinion.opiner.username }}
+                </li>
+              {% if forloop.last %}</ul>{% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if oppose_opinions %}
+          {% for opinion in oppose_opinions %}
+            {% if forloop.first %}<ul class='unstyled'>{% endif %}
+              <li>
+                <span class="label label-important">Oppose</span>
+                "{{ opinion.latest.statement }}"
+                - {{ opinion.opiner.username }}
+              </li>
+            {% if forloop.last %}</ul>{% endif %}
+          {% endfor %}
+        {% endif %}
+
+        <hr />
+        <h4>What's your opinion?</h4>
+          {% if user.is_authenticated %}
+            {% if is_opined %}
+            <form action="{% url 'revise_opinion' opinion.pk %}" method="post" class="uniForm">{% csrf_token %}
+            {% else %}
+            <form action="{% url 'express_opinion' %}" method="post" class="uniForm">{% csrf_token %}
+            {% endif %}
+              <fieldset class="inlineLabels">
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                {{ opinion_form|as_uni_form }}
+                  <button class='btn btn-info' type="submit" class="primaryAction">Post your statement</button>
+              </fieldset>
+            </form>
+          {% else %}
+              <p><a href="{% url 'registration_login' %}?next={{ request.get_full_path }}">Log in</a> to comment on the legislation.</p>
+          {% endif %}
+
+    </div>
+
+    <div class='span3'>
+        {% include "councilmatic/partials/share_buttons.html" %}
+	<div class='well'>
+          <strong>Introduced:</strong>
+          {{ object.intro_date }}
+	  <br />
+          {% if object.last_action_date %}
+            <strong>Last action:</strong>
+            {{ object.last_action_date }}
+          {% endif %}
+	  <br />
+          <strong>Status:</strong>
+          <span class='label {{object.get_status_label}}'>{{ object.status }}</span>
+       
+      </div>
+
+      {% if object.sponsors %}
+        {% include "councilmatic/partials/sponsor_list.html" %}
+      {% endif %}
+
+      <div class='well'>
+        <h4>Source</h4>
+        View <a href="{{ legfile.url }}">{{ object.type }} {{ object.id }}</a> on the City Clerk's website.
+      </div>
+
+      </div>
+
+    </div>
+  </div> <!-- end row-fluid -->
+
+  </section>
+
+{% endblock %}
+
+{% block load_late %}
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+  {% compress js %}
+  <script src="{{ STATIC_URL }}main/legfile_detail.js"></script>
+  {% endcompress %}
+{% endblock %}

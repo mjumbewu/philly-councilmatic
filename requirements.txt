@@ -1,4 +1,5 @@
 # ====================
 # The Councilmatic App
 # ====================
-git+git://github.com/codeforamerica/councilmatic.git#egg=councilmatic
+# This needs to point back to the main repo in code for america!
+git+git://github.com/corydissinger/councilmatic.git#egg=councilmatic

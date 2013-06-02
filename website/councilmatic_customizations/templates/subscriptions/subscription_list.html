@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load subscription_labels %}
+
+{% block load_early %}
+<!--	<link rel="stylesheet" href="{{ STATIC_URL }}phillyleg/legislation.css">-->
+<!--    <link rel="stylesheet" href="{{ STATIC_URL }}main/app_dashboard.css">-->
+{% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+	<div class="span10 offset1">
+		<h2>Your subscriptions</h2>
+		<p>
+			Manage the legislation you have subscribed to.
+		</p>
+	</div>
+</div>
+
+{% for subscription in object_list %}
+
+<div class="row-fluid">
+	<div class="span10 offset1">
+		<h4>{{subscription|subscription_title}}</h4>
+		{% if subscription|has_been_sent %}
+		<p>
+			Last update sent on {{ subscription.last_sent|date }}
+		</p>
+		{% endif %}
+		
+		<p>
+			<a href="{% url "unsubscribe_confirmation" subscription.pk %}" id="unsubscribe_{{subscription.id}}_btn" class='btn btn-danger'>Unsubscribe</a>
+		</p>
+	</div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

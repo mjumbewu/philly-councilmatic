@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load subscription_labels %}
+
+{% block content %}
+  <section id="main" class="subscription_list_section">
+    <div class="block">
+
+      <div class="content">
+        <div class="inner">
+          <header>
+            <h2>Really unsubscribe from {{ subscription|subscription_title }}?</h2>
+          </header>
+          
+          <form action="{% url "unsubscribe" object.pk %}" method="POST">{% csrf_token %}
+            <input type="hidden" name="success" value="{% url "subscription_list" %}">
+            <button type="submit">Yes, I'm sure!</button>
+          </form>
+          <a href="{% url "subscription_list" %}">No, don't unsubscribe.</a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

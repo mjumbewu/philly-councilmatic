@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load i18n %}
+{% load compress %}
+
+{% block load_early %}
+{% endblock %}
+
+{% block content %}
+<div class="councilmembers dashboard">
+  <div class='row'>
+    <div class='offset1 span10'>
+      <div class="content">
+        <h1>
+          Legislative sponsors
+        </h1>
+        <p>Every piece of legislation submitted to City Council must have at least one sponsor. <br />Sponsors include all 50 Chicago Aldermen, the Mayor and the City Clerk.</p>
+        <hr />
+
+        <h2>Aldermen</h2>
+        {% for councilmember in councilmembers %}
+          <div class='span3'>
+            <div class='row-fluid'>
+              <img class='img-polaroid span4' style="margin-bottom: 20px;" alt="{{ councilmember.name }}" src="{{STATIC_URL}}{{ councilmember.headshot }}">
+              <div class='span8'>
+                <h4>
+                  <a href='/member/{{councilmember.id}}'>
+                    {{ councilmember.name }}
+                  </a>
+                </h4>
+                <p>{{ councilmember.title }}</p>
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:3 %}<div class='clearfix'></div>{% endif %}
+        {% endfor %}
+
+        <div class='clearfix'></div>
+        <hr />
+        <h2>Other</h2>
+        {% for councilmember in other_councilmembers %}
+          <div class='span3'>
+            <div class='row-fluid'>
+              <img class='img-polaroid span4' style="margin-bottom: 20px;" alt="{{ councilmember.name }}" src="{{STATIC_URL}}{{ councilmember.headshot }}">
+              <div class='span8'>
+                <h4>
+                  <a href='/member/{{councilmember.id}}'>
+                    {{ councilmember.name }}
+                  </a>
+                </h4>
+                <p>{{ councilmember.title }}</p>
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:3 %}<div class='clearfix'></div>{% endif %}
+        {% endfor %}
+
+        <div class='clearfix'></div>
+        <hr />
+        <h2>Former</h2>
+        {% for councilmember in former_councilmembers %}
+          <div class='span3'>
+            <div class='row-fluid'>
+              <img class='img-polaroid span4' style="margin-bottom: 20px;" alt="{{ councilmember.name }}" src="{{STATIC_URL}}{{ councilmember.headshot }}">
+              <div class='span8'>
+                <h4>
+                  <a href='/member/{{councilmember.id}}'>
+                    {{ councilmember.name }}
+                  </a>
+                </h4>
+                <p>{{ councilmember.title }}</p>
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:3 %}<div class='clearfix'></div>{% endif %}
+        {% endfor %}
+
+
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>
+
+{% block load_late %}
+{% endblock %}
+

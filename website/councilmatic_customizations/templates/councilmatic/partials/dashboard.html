@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+{% load cache %}
+{% load url from future %}
+
+{% block load_early %}
+<!--  <link rel="stylesheet" href="{{ STATIC_URL }}phillyleg/legislation.css">-->
+<!--  <link rel="stylesheet" href="{{ STATIC_URL }}main/app_dashboard.css">-->
+{% endblock %}
+
+{% block content %}
+<div id="dashboard">
+	<div class='row-fluid'>
+		<div class='offset1 span10'>
+			<p class='lead'>
+				Keep tabs on what your City Council is doing.
+			</p>
+			<section id="dashboard-search" class="hero-unit">
+				<header>
+					<h2>{% trans "Find legislation" %}</h2>
+				</header>
+
+				<form class="search form-search" action="{% url 'search' %}" method="GET">
+					<div class="ctrlHolder">
+						<input name="q" type="text" class="input-xxlarge" placeholder="Rahm Emanuel, zoning, resolution #R2013-1, etc.">
+						<button type="submit" class="btn btn-large btn-info">
+							{% trans "Search" %}
+						</button>
+					</div>
+				</form>
+			</section>
+		</div>
+	</div>
+	<!-- row-fluid -->
+	<div id="dashboard-legislation" class='row-fluid'>
+		<div id="dashboard-legislation-list" class="offset1 span5">
+			<h3>{% trans "Recent legislation" %}</h3>
+
+			{% include "councilmatic/partials/legfile_list.html" %}
+
+			<a href="/search?q=&topics=Non-Routine">More...</a>
+		</div>
+		<!-- #dashboard-legislation-list -->
+
+		<div id="dashboard-legislation-map" class="span5">
+			<h3>Topics from the last month</h3>
+			{% cache 1800 recent_topics %}
+			{% for topic in recent_topics %}
+			<h4>{{topic.leg_count}} <a href='/search?q=&topics={{topic.topic}}'>{{topic.topic}}</a></h4>
+			{% endfor %}
+			{% endcache %}
+		</div>
+	</div>
+	<!-- dashboard -->
+</div>
+<!-- row-fluid -->
+{% endblock %}
+
+{% block load_late %}
+{# {% compress js %} #}
+<script src="{{ STATIC_URL }}main/dashboard_search.js"></script>
+{# {% endcompress %} #}
+{% endblock %}

@@ -95,3 +95,19 @@ body {
   background: #373737;
   border-bottom: 1px solid #e3e3e3;
 }
+
+#id_legislation_search_form > div {
+	margin-bottom: 10px;
+}
+
+.search-input-home {
+	width: 65%;
+}
+
+.search-button-home {
+	width: 30%;
+}
+
+.icon-5 {
+	font-size: 12em;
+}

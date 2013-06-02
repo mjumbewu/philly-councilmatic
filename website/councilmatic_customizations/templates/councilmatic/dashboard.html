@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+{% load cache %}
+{% load url from future %}
+
+{% block load_early %}
+<!--  <link rel="stylesheet" href="{{ STATIC_URL }}phillyleg/legislation.css">-->
+<!--  <link rel="stylesheet" href="{{ STATIC_URL }}main/app_dashboard.css">-->
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div id="dashboard">
+	<div class='row-fluid'>
+		<div id="dashboard-search" class='span10 offset1'>
+			<form class="search form-search" action="{% url 'search' %}" method="GET">
+				<div class="ctrlHolder">
+					<input name="q" type="text" class="search-input-home" placeholder="What are you interested in?">
+					<button type="submit" class="btn btn-large btn-info search-button-home">
+						{% trans "Search" %}&nbsp;<i class="icon-search icon-large"></i> 
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4 pagination-centered">
+			<img src="{{ STATIC_URL }}philly/subscribe-active.png">
+		</div>
+		<div class="span4 pagination-centered">
+			<i class="icon-lightbulb icon-5"></i>
+			
+			<p class="text-center">
+				<h2 class="text-info"><strong>Contextualize</strong></h2>
+			</p>
+		</div>		
+		<div class="span4 pagination-centered">
+			<i class="icon-thumbs-up icon-5"></i>		
+				
+			<p class="text-center">
+				<h2 class="text-info"><strong>Evaluate</strong></h2>
+			</p>			
+		</div>		
+	</div>
+</div>
+<!-- row-fluid -->
+{% endblock %}
+
+{% block load_late %}
+{% endblock %}
