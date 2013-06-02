@@ -108,6 +108,19 @@ body {
 	width: 30%;
 }
 
-.icon-5 {
-	font-size: 12em;
+.dashboard-text {
+	font-size: 18px;
+}
+
+p, #site-header {
+	font-family: 'Raleway', sans-serif;	
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Marcellus', serif;
+	color: #3a87ad;	
+}
+
+body { 
+  background: url('../philly/background.png'); 
 }
