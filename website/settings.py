@@ -208,6 +208,7 @@ COUNCILMATIC_APPS = (
 
 PROJECT_SPECIFIC_APPS = (
     'councilmatic_customizations',
+    'regions',
 )
 
 INSTALLED_APPS = (

@@ -1,0 +1,3 @@
+[submodule "website/regions/azavea-geo-data"]
+	path = website/regions/azavea-geo-data
+	url = git://github.com/azavea/geo-data.git
