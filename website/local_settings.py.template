@@ -47,19 +47,48 @@ FOOTER_CONTENT = "An app by <a href='http://codeforamerica.org'>Code for America
 # Source Data
 #
 
-LEGISLATION = {
-    'SYSTEM': 'Daystar Insite',
-    'ROOT': 'http://legislation.phila.gov/',
-    'STARTING_KEY': 72,
-    'ADDRESS_BOUNDS': [39.874439,-75.29892, 40.141615,-74.940491], # lat, lng, lat, lng
-    'ADDRESS_SUFFIX': ', Philadelphia, PA',
+# If your city is using an older version of Legistar from back in the days 
+# before Granicus bought Daystar, then your legislation settings should look
+# something like this:
+#
+# LEGISLATION = {
+#     'SYSTEM': 'Daystar Insite',
+#     'ROOT': 'http://legislation.phila.gov/',
+#     'STARTING_KEY': 72,
+#     'ADDRESS_BOUNDS': [39.874439,-75.29892, 40.141615,-74.940491], # lat, lng, lat, lng
+#     'ADDRESS_SUFFIX': ', Philadelphia, PA',
+# 
+#     'SCRAPER': ('phillyleg.management.scraper_wrappers.sources.'
+#                 'insite_scraper.PhillyLegistarSiteWrapper'),
+#     'SCRAPER_OPTIONS': {
+#         'root_url': 'http://legislation.phila.gov/',
+#     },
+# }
 
-    'SCRAPER': 'phillyleg.management.scraper_wrappers.sources.insite_scraper.PhillyLegistarSiteWrapper',
-    'SCRAPER_OPTIONS': {
-        'hostname': 'http://legislation.phila.gov/',
-    },
-}
-
+# If your city is using a hosted version of legistar (e.g., your city's 
+# Legistar hostname is something like <city>.legistar.com), your legislation
+# settings should look something like:
+#
+# LEGISLATION = {
+#     'SYSTEM': 'Granicus Legistar',
+#     'ROOT': 'http://phila.legistar.com/',
+#     'ADDRESS_BOUNDS': [39.874439,-75.29892, 40.141615,-74.940491], # lat, lng, lat, lng
+#     'ADDRESS_SUFFIX': ', Philadelphia, PA',
+# 
+#     'SCRAPER': ('phillyleg.management.scraper_wrappers.sources.'
+#                 'hosted_legistar_scraper.HostedLegistarSiteWrapper'),
+#     'SCRAPER_OPTIONS': {
+#         'hostname': 'http://phila.legistar.com/',
+#         'fulltext': True,        # Load and store full text from PDFs?
+#         'sponsor_links': False,  # Are sponsor names in anchors/links?
+#
+#         # Label overrides
+#         # --------------- 
+#         'id_label': 'File #',
+#         'controlling_body_label': 'In control',
+#         'intro_date_label': 'File Created',
+#     },
+# }
 
 ###############################################################################
 #

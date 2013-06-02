@@ -1,6 +1,10 @@
 # ====================
 # The Councilmatic App
 # ====================
+<<<<<<< HEAD
+# This needs to point back to the main repo in code for america!
+git+git://github.com/corydissinger/councilmatic.git#egg=councilmatic
+=======
 git+git://github.com/codeforamerica/councilmatic.git#egg=councilmatic
 
 # ====================
@@ -9,3 +13,4 @@ git+git://github.com/codeforamerica/councilmatic.git#egg=councilmatic
 # Use Chris's for now, until changes are pulled in to Forest's that support
 # both Philadelphia and Chicago.
 git+git://github.com/notthatbreezy/legistar-scrape.git#egg=legistar-scraper
+>>>>>>> af187a109c5102762bca29dcaeb30257f01c469e
