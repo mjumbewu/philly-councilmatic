@@ -9,7 +9,7 @@
 #   * Set up daily cron jobs
 
 echo 'Injecting the appropriate settings into local_settings.py'
-cat >> councilmatic/local_settings.py <<EOF
+cat >> website/local_settings.py <<EOF
 
 import json
 with open("/home/dotcloud/environment.json") as env_json:
@@ -151,7 +151,7 @@ location /static/ { root /home/dotcloud ; }
 EOF
 
 echo 'Doing the management commands'
-cd councilmatic
+cd website
 python manage.py syncdb --noinput
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput
