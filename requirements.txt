@@ -1,11 +1,9 @@
 # ====================
 # The Councilmatic App
 # ====================
-git+git://github.com/corydissinger/councilmatic.git#egg=councilmatic
+git+git://github.com/codeforamerica/councilmatic.git#egg=councilmatic
 
 # ====================
 # Legistar scraping
 # ====================
-# Use Chris's for now, until changes are pulled in to Forest's that support
-# both Philadelphia and Chicago.
-git+git://github.com/notthatbreezy/legistar-scrape.git#egg=legistar-scraper
+git+git://github.com/fgregg/legistar-scrape.git#egg=legistar-scraper
