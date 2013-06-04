@@ -179,7 +179,6 @@ HAYSTACK_ITERATOR_LOAD_PER_QUERY = 800
 
 COMMUNITY_APPS = (
     'registration',
-    'captcha',
     'south',
     'haystack',
     'uni_form',
