@@ -20,62 +20,61 @@
 				<div id="div_id_q" class="ctrlHolder">
 
 					<label for="id_q"> Search </label>
-
-					<input id="id_q" type="text" class="textInput textinput" name="q">
+					<input id="id_q" type="text" class="textInput textinput" name="q" value="{{ form.q.value }}">
 				</div>
 				
 				<div class="row-fluid">
 					<div class="span12">
-						<select name="topics" data-placeholder="Narrow by Topics..." class="selectmultiple" multiple="">
-							<option value=""></option>
-							{% for topic in topics %}
-								<option value="{{ topic.0 }}">{{ topic.1 }}</option>
-							{% endfor %}					
-						</select>
+						{% with name='topics' %}
+						{% with options=topics %}
+						{% with field=form.topics %}
+						{% with placeholder=_('Narrow by Topics...') %}
+							{% include 'councilmatic/partials/options_widget.html' %}
+						{% endwith %} {% endwith %} {% endwith %} {% endwith %} 
 					</div>
 				</div>
 
 				<div class="row-fluid">
 					<div class="span12">						
-						<select name="statuses" data-placeholder="Narrow by Statuses..." class="selectmultiple" multiple="">
-							<option value=""></option>
-							{% for status in statuses %}
-								<option value="{{ status.0 }}">{{ status.1 }}</option>
-							{% endfor %}					
-						</select>
+						{% with name='statuses' %}
+						{% with options=statuses %}
+						{% with field=form.statuses %}
+						{% with placeholder=_('Narrow by Statuses...') %}
+							{% include 'councilmatic/partials/options_widget.html' %}
+						{% endwith %} {% endwith %} {% endwith %} {% endwith %} 
 					</div>
 				</div>						
 
 				<div class="row-fluid">
-					<div class="span12">				
-						<select name="controlling_bodies" data-placeholder="Narrow by controlling body..." class="selectmultiple" multiple="">
-							<option value=""></option>
-							{% for controlling_body in controlling_bodies %}
-								<option value="{{ controlling_body.0 }}">{{ controlling_body.1 }}</option>
-							{% endfor %}					
-						</select>
+					<div class="span12">
+						{% with name='controlling_bodies' %}
+						{% with options=controlling_bodies %}
+						{% with field=form.controlling_bodies %}
+						{% with placeholder=_('Narrow by controlling body...') %}
+							{% include 'councilmatic/partials/options_widget.html' %}
+						{% endwith %} {% endwith %} {% endwith %} {% endwith %} 
 					</div>
 				</div>				
 				
 				<div class="row-fluid">
 					<div class="span12">				
-						<select name="file_types" data-placeholder="Narrow by type of legislation..." class="selectmultiple" multiple="">
-							<option value=""></option>
-							{% for file_type in file_types %}
-								<option value="{{ file_type.0 }}">{{ file_type.1 }}</option>
-							{% endfor %}					
-						</select>
+						{% with name='file_types' %}
+						{% with options=file_types %}
+						{% with field=form.file_types %}
+						{% with placeholder=_('Narrow by type of legislation...') %}
+							{% include 'councilmatic/partials/options_widget.html' %}
+						{% endwith %} {% endwith %} {% endwith %} {% endwith %} 
 					</div>
 				</div>			
 
 				<div class="row-fluid">
 					<div class="span12">										
-						<select name="sponsors" data-placeholder="Narrow by sponsor..." class="selectmultiple" multiple="">
-							<option value=""></option>
-							{% for sponsor in sponsors %}
-								<option value="{{ sponsor.0 }}">{{ sponsor.1 }}</option>
-							{% endfor %}					
-						</select>
+						{% with name='sponsors' %}
+						{% with options=sponsors %}
+						{% with field=form.sponsors %}
+						{% with placeholder=_('Narrow by sponsor...') %}
+							{% include 'councilmatic/partials/options_widget.html' %}
+						{% endwith %} {% endwith %} {% endwith %} {% endwith %} 
 					</div>
 				</div>
 

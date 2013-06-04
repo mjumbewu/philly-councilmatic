@@ -1,0 +1,9 @@
+<select name="{{name}}" data-placeholder="{{placeholder}}" class="selectmultiple" multiple="">
+	<option value=""></option>
+	{% for option in options %}
+		<option value="{{ option.0 }}" 
+		 	{% if option.0 in field.value %}
+		 		selected="selected"
+		 	{% endif %}>{{ option.1 }}</option>
+	{% endfor %}					
+</select>
