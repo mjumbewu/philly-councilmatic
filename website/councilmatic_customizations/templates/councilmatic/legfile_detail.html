@@ -1,8 +1,5 @@
 {% extends "base.html" %}
-{% load model_blocks %}
-{% load uni_form_tags %}
 {% load url from future %}
-{% load comments %}
 {% load compress %}
 
 {% block title %}{{ object.title|truncatewords:14 }}{% endblock %}
@@ -152,8 +149,10 @@
             {% endif %}
               <fieldset class="inlineLabels">
                 <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                {{ opinion_form|as_uni_form }}
-                  <button class='btn btn-info' type="submit" class="primaryAction">Post your statement</button>
+                  {{ opinion_form }}
+                  <div>
+                    <button class='btn btn-info' type="submit" class="primaryAction">Post your statement</button>
+                  </div>
               </fieldset>
             </form>
           {% else %}
