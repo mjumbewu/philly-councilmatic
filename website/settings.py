@@ -183,7 +183,6 @@ COMMUNITY_APPS = (
     'haystack',
     'uni_form',
     'django_nose',
-    # 'social_auth',
     'councilmatic.ebdata', # From everyblock -- used here for parsing addresses and such
     'compressor',
     'djangorestframework',
