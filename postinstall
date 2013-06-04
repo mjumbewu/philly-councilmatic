@@ -1,0 +1,171 @@
+#!/bin/bash
+
+# A post-install hook script for the dotcould infrastructure.  This hook should
+# do a few things:
+#
+#   * Load the history of legislative files from ScraperWiki
+#   * Load the history of meetings and agendas from ScraperWiki
+#   * Build the search indexes
+#   * Set up daily cron jobs
+
+echo 'Injecting the appropriate settings into local_settings.py'
+cat >> councilmatic/local_settings.py <<EOF
+
+import json
+with open("/home/dotcloud/environment.json") as env_json:
+    env = json.load(env_json)
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'councilmatic',
+        'USER': env['DOTCLOUD_DB_SQL_LOGIN'],
+        'PASSWORD': env['DOTCLOUD_DB_SQL_PASSWORD'],
+        'HOST': env['DOTCLOUD_DB_SQL_HOST'],
+        'PORT': env['DOTCLOUD_DB_SQL_PORT'],
+    }
+}
+
+DEBUG = (env.get('DEBUG', 'False') in ('True', 'true'))
+COMPRESS_ENABLED = True
+TEMPLATE_DEBUG = DEBUG
+STATIC_ROOT = '/home/dotcloud/static/'
+
+###############################################################################
+#
+# Source Data
+#
+
+LEGISLATION = {
+    'SYSTEM': 'Granicus Legistar',
+    'ROOT': 'http://phila.legistar.com/',
+    'ADDRESS_BOUNDS': [39.874439,-75.29892, 40.141615,-74.940491], # lat, lng, lat, lng
+    'ADDRESS_SUFFIX': ', Philadelphia, PA',
+
+    'SCRAPER': ('phillyleg.management.scraper_wrappers.sources.'
+                'hosted_legistar_scraper.HostedLegistarSiteWrapper'),
+    'SCRAPER_OPTIONS': {
+        'hostname': 'phila.legistar.com',
+        'fulltext': True,
+        'sponsor_links': False,
+
+        'id_label': 'File #',
+        'controlling_body_label': 'In control',
+        'intro_date_label': 'File Created',
+    },
+}
+
+###############################################################################
+#
+# Site search configuration
+#
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': env['DOTCLOUD_SEARCH_HTTP_URL'],
+    }
+}
+
+################################################################################
+#
+# Testing and administration
+#
+
+DEFAULT_FROM_EMAIL = env.get('DEFAULT_FROM_EMAIL')
+EMAIL_HOST = env.get('EMAIL_HOST')
+EMAIL_PORT = env.get('EMAIL_PORT')
+EMAIL_HOST_USER = env.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.get('EMAIL_HOST_PASSWORD')
+
+if isinstance(EMAIL_PORT, basestring):
+    EMAIL_PORT = int(EMAIL_PORT)
+if isinstance(EMAIL_HOST_PASSWORD, unicode):
+    EMAIL_HOST_PASSWORD = str(EMAIL_HOST_PASSWORD)
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level':'DEBUG',
+            'class':'django.utils.log.NullHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'log_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'verbose',
+            'filename': '/var/log/supervisor/councilmatic.log',
+            'maxBytes': 1024*1024*25, # 25 MB
+            'backupCount': 5,
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'log_file', 'mail_admins'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console', 'log_file', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['console', 'log_file', 'mail_admins'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        # Catch All Logger -- Captures any other logging
+        '': {
+            'handlers': ['console', 'log_file', 'mail_admins'],
+            'level': 'INFO',
+            'propagate': True,
+        }
+    }
+}
+
+EOF
+
+echo 'Setting up nginx to serve static files'
+cat >> nginx.conf <<EOF
+location /static/ { root /home/dotcloud ; }
+EOF
+
+echo 'Doing the management commands'
+cd councilmatic
+python manage.py syncdb --noinput
+python manage.py migrate --noinput
+python manage.py collectstatic --noinput
+
+echo 'Getting ready for the search index'
+mkdir ~/whoosh_index
+#python manage.py rebuild_index --noinput & disown  # run this in the bg
+
+echo 'Getting ready for logs'
+mkdir ~/logs
+
+echo 'Scheduling the cron jobs'
+cd ../
+crontab - <<EOF
+MAILTO=""
+0 5 * * * "/home/dotcloud/current/crons/daily_jobs"
+EOF
