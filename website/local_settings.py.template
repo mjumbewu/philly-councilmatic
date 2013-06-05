@@ -87,6 +87,7 @@ FOOTER_CONTENT = "An app by <a href='http://codeforamerica.org'>Code for America
 #         'id_label': 'File #',
 #         'controlling_body_label': 'In control',
 #         'intro_date_label': 'File Created',
+#         'topics_label': 'Indexes',
 #     },
 # }
 
