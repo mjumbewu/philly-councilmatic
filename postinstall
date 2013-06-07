@@ -58,6 +58,14 @@ LEGISLATION = {
 
 ###############################################################################
 #
+# Topic classifier
+#
+# Use this to set custom rules for classifying your legislation
+
+TOPIC_CLASSIFIER = lambda title: []
+
+###############################################################################
+#
 # Site search configuration
 #
 
