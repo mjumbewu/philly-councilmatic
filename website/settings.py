@@ -114,7 +114,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'utils.context_processors.site',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'councilmatic.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or
@@ -180,21 +180,18 @@ COMMUNITY_APPS = (
     'django_nose',
     'councilmatic.ebdata', # From everyblock -- used here for parsing addresses and such
     'compressor',
-    'djangorestframework',
+    'rest_framework',
     'debug_toolbar',
     'mustachejs',
 )
 
 COUNCILMATIC_APPS = (
     'councilmatic',
-    'cm',
-    'cm_api',
     'phillyleg',
     'subscriptions',
     'bookmarks',
     'activity_log',
     'opinions',
-    'main',
     'utils',
 )
 
