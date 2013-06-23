@@ -19,7 +19,7 @@
 				<div id="div_id_q" class="ctrlHolder">
 
 					<label for="id_q"> Search </label>
-					<input id="id_q" type="text" class="textInput textinput" name="q" value="{{ form.q.value }}">
+					<input id="id_q" type="text" class="textInput textinput" name="q" value="{{ form.q.value|default_if_none:'' }}">
 				</div>
 				
 				<div class="row-fluid">
