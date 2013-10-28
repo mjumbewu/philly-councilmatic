@@ -9,15 +9,17 @@
 {% block content %}
 <div class="councilmembers dashboard">
   <div class='row'>
-    <div class='offset1 span10'>
+    <div class='span12'>
       <div class="content">
         <h1>
-          Legislative sponsors
+          {% trans='Legislative sponsors' %}
         </h1>
-        <p>Every piece of legislation submitted to City Council must have at least one sponsor. <br />Sponsors include all 50 Chicago Aldermen, the Mayor and the City Clerk.</p>
+
+        <p>{% trans 'The 1951 Home Rule Charter established Council as the legislative arm of Philadelphia municipal government, consisting of seventeen members. Ten Councilmembers are elected by district and seven from the City-at-large. Each is elected for a term of four years with no limitations as to the number of terms that may be served.' %}</p>
+
         <hr />
 
-        <h2>Aldermen</h2>
+        <h2>Current</h2>
         {% for councilmember in councilmembers %}
           <div class='span3'>
             <div class='row-fluid'>
@@ -37,7 +39,7 @@
 
         <div class='clearfix'></div>
         <hr />
-        <h2>Other</h2>
+        <h2>Past</h2>
         {% for councilmember in other_councilmembers %}
           <div class='span3'>
             <div class='row-fluid'>
