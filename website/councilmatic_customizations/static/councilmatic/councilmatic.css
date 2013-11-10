@@ -8,6 +8,18 @@
   }
 }
 
+.navbar-text {
+  padding: 10px 15px 10px;
+}
+
+#dashboard-search {
+  line-height: 200px;
+}
+
+.dashboard-icon img {
+  width: 20%;
+}
+
 #dashboard-search input[name='q'] {
   /* @largeRatio: @fontSizeLarge/@baseFontSize; */
 

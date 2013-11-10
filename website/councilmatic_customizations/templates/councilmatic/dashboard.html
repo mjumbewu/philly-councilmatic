@@ -10,7 +10,8 @@
 
 {% block content %}
 <div id="dashboard">
-	<div class='row-fluid'>
+	
+	<div class="dashboard-search row-fluid">
 		<div id="dashboard-search" class='span10 offset1'>
 			<form class="search form-search" action="{% url 'search' %}" method="GET">
 				<div class="ctrlHolder">
@@ -22,22 +23,23 @@
 			</form>
 		</div>
 	</div>
+
 	<div class="row-fluid">
-		<div class="span4 pagination-centered">
+		<div class="span4 pagination-centered dashboard-icon dashboard-subscribe-icon">
 			<img src="{{ STATIC_URL }}philly/subscribe.png">
 			<h2><strong>Subscribe</strong></h2>
 			<p class="dashboard-text">
 				Subscribe to legislation as its made available. Councilmatic provides email subscriptions to the legislation relevant to you.
 			</p>			
 		</div>
-		<div class="span4 pagination-centered">
+		<div class="span4 pagination-centered dashboard-icon dashboard-contextualize-icon">
 			<img src="{{ STATIC_URL }}philly/lightbulb.png">
 			<h2><strong>Contextualize</strong></h2>			
 			<p class="dashboard-text">
 				See relevant information around legislation, like the geographical areas mentioned, related legislation, and related information from around the internet.
 			</p>
 		</div>		
-		<div class="span4 pagination-centered">
+		<div class="span4 pagination-centered dashboard-icon dashboard-evaluate-icon">
 			<img src="{{ STATIC_URL }}philly/thumbs-up.png">
 			<h2><strong>Evaluate</strong></h2>				
 			<p class="dashboard-text">
