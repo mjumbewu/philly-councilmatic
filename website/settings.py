@@ -295,3 +295,7 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+###############################################################################
+# Use the heroku settings, if we're on Heroku
+from heroku_settings import *

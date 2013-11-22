@@ -8,3 +8,8 @@ git+git://github.com/codeforamerica/councilmatic.git#egg=councilmatic
 # Legistar scraping
 # ====================
 git+git://github.com/fgregg/legistar-scrape.git#egg=legistar-scraper
+
+# ====================
+# Heroku helpers
+# ====================
+django-toolbelt  # For dj-database-url, dj-static, psycopg2, gunicorn, ...
