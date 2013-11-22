@@ -229,65 +229,9 @@ DEBUG_TOOLBAR_CONFIG = {
 INTERNAL_IPS = ('127.0.0.1',)
 
 # Logging
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
+# -------
+# Set up logging configuration in local settings file
 
-    'filters': {
-    },
-
-    'handlers': {
-        'null': {
-            'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
-        },
-        'console':{
-            'level':'INFO',
-            'class':'logging.StreamHandler',
-            'formatter':'verbose',
-        },
-        'logfile':{
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename':'',  # OVERRIDE THIS VALUE!
-            'formatter':'verbose',
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'include_html': True,
-        }
-    },
-
-    'loggers': {
-        'django': {
-            'handlers':['null'],
-            'propagate': True,
-            'level':'INFO',
-        },
-        'django.request': {
-            'handlers': ['logfile', 'mail_admins'],
-            'level': 'WARNING',
-            'propagate': False,
-        },
-        'councilmatic': {
-            'handlers': ['console', 'logfile', 'mail_admins'],
-            'level': 'DEBUG',
-        },
-        'phillyleg.management': {
-            'handlers': ['console', 'logfile', 'mail_admins'],
-            'level': 'DEBUG',
-        },
-    }
-}
 
 ###############################################################################
 # Local settings overrides
