@@ -11,6 +11,11 @@ COMPRESS_ENABLED = True
 TEMPLATE_DEBUG = DEBUG
 DO_DEBUG_TOOLBAR = True
 
+ADMINS = [
+    (admin.split('@')[0], admin)
+    for admin in os.environ.get('ADMINS', '').split(',')
+]
+
 import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
