@@ -154,12 +154,6 @@ LOGGING = {
             'class':'logging.StreamHandler',
             'formatter':'verbose',
         },
-        'logfile':{
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename':rel_path('logs/councilmatic.log'),
-            'formatter':'verbose',
-        },
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
@@ -175,16 +169,16 @@ LOGGING = {
             'level':'INFO',
         },
         'django.request': {
-            'handlers': ['logfile', 'mail_admins'],
+            'handlers': ['mail_admins'],
             'level': 'WARNING',
             'propagate': False,
         },
         'councilmatic': {
-            'handlers': ['console', 'logfile', 'mail_admins'],
+            'handlers': ['console', 'mail_admins'],
             'level': 'DEBUG',
         },
         'phillyleg.management': {
-            'handlers': ['console', 'logfile', 'mail_admins'],
+            'handlers': ['console', 'mail_admins'],
             'level': 'DEBUG',
         },
     }
