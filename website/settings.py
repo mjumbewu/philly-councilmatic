@@ -234,12 +234,13 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 
 ###############################################################################
+# Use the heroku settings, if we're on Heroku
+from heroku_settings import *
+
+
+###############################################################################
 # Local settings overrides
 try:
     from local_settings import *
 except ImportError:
     pass
-
-###############################################################################
-# Use the heroku settings, if we're on Heroku
-from heroku_settings import *
