@@ -121,8 +121,8 @@ TOPIC_CLASSIFIER = lambda title: []
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': rel_path('whoosh_index'),
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticSearchEngine',
+        'URL': os.environ['SEARCH_URL'],
     }
 }
 
