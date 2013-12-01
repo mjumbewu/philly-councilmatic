@@ -100,7 +100,7 @@ TOPIC_CLASSIFIER = lambda title: []
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticSearchEngine',
-        'URL': os.environ['SEARCH_URL'],
+        'URL': os.environ.get('SEARCH_URL'),
     }
 }
 
