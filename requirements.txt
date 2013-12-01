@@ -4,6 +4,7 @@
 Django==1.5.5
 git+git://github.com/codeforamerica/councilmatic.git#egg=councilmatic
 gunicorn
+elasticsearch-py
 
 # ====================
 # Legistar scraping
