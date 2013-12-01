@@ -235,7 +235,8 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 ###############################################################################
 # Use the heroku settings, if we're on Heroku
-from heroku_settings import *
+if os.environ.get('IS_HEROKU'):
+    from heroku_settings import *
 
 
 ###############################################################################
