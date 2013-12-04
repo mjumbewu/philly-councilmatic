@@ -11,7 +11,7 @@ echoerr
 echoerr "============================================================"
 echoerr "Attempting to import any new legislative data..."
 echoerr
-if python manage.py updatelegfiles
+if python manage.py updatelegfiles --traceback
 	then echoerr "Finished updating all data."
 	else echoerr "Failed to update all data."
 fi
@@ -21,7 +21,7 @@ echoerr
 echoerr "============================================================"
 echoerr "Attempting to update the search index..."
 echoerr
-if python manage.py update_index
+if python manage.py update_index --traceback
 	then echoerr "Success!"
 	else echoerr "Failed to update the search index."
 fi
@@ -31,9 +31,9 @@ echoerr
 echoerr "============================================================"
 echoerr "Sending out any subscription update notifications..."
 echoerr
-python manage.py cleanfeeds || true
-python manage.py updatefeeds || true
-python manage.py sendfeedupdates || true
+python manage.py cleanfeeds --traceback || true
+python manage.py updatefeeds --traceback || true
+python manage.py sendfeedupdates --traceback || true
 
 # 4. Update previous legfiles.  This means that updates to older content will
 #    always be a little behind, but it's better than nothing.
