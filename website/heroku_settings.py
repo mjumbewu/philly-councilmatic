@@ -101,7 +101,7 @@ HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
         'URL': os.environ.get('SEARCH_URL'),
-        'INDEX_NAME': 'councimatic',
+        'INDEX_NAME': 'councilmatic',
     }
 }
 
