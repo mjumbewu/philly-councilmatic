@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Set COUNCILMATIC_DIR to the absolute path of the Django project's root folder.
+COUNCILMATIC_SRC=$(dirname $0)/../src
+cd "$COUNCILMATIC_SRC"
+
+echoerr() { echo "$@" 1>&2; }
+
+# 1. Download any new files
+echoerr
+echoerr "============================================================"
+echoerr "Attempting to import any new legislative data..."
+echoerr
+if python manage.py updatelegfiles
+	then echoerr "Finished updating all data."
+	else echoerr "Failed to update all data."
+fi
+
+# 2. Update the search index with any files updated in the last week
+echoerr
+echoerr "============================================================"
+echoerr "Attempting to update the search index..."
+echoerr
+if python manage.py update_index
+	then echoerr "Success!"
+	else echoerr "Failed to update the search index."
+fi
+
+# 3. Send out subscription content notifications
+echoerr
+echoerr "============================================================"
+echoerr "Sending out any subscription update notifications..."
+echoerr
+python manage.py cleanfeeds || true
+python manage.py updatefeeds || true
+python manage.py sendfeedupdates || true
+
+# 4. Update previous legfiles.  This means that updates to older content will
+#    always be a little behind, but it's better than nothing.
+# python manage.py updatelegfiles --update
