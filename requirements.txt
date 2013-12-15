@@ -2,14 +2,14 @@
 # The Councilmatic App
 # ====================
 Django==1.5.5
-git+git://github.com/codeforamerica/councilmatic.git@3a2276#egg=councilmatic-git3a2276
+git+git://github.com/codeforamerica/councilmatic.git@3a2276#egg=councilmatic==git-3a2276
 gunicorn
 pyelasticsearch
 
 # ====================
 # Legistar scraping
 # ====================
-git+git://github.com/fgregg/legistar-scrape.git@5f04ebe7#egg=legistar-scraper-git5f04eb
+git+git://github.com/fgregg/legistar-scrape.git@5f04ebe7#egg=legistar-scraper==git-5f04ebe7
 https://pypi.python.org/packages/source/p/pdfminer/pdfminer-20110515.tar.gz#md5=f3905f801ed469900d9e5af959c7631a
 
 # ====================
