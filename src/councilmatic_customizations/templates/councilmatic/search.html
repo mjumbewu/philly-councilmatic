@@ -121,7 +121,7 @@
 							{% endfor %}
 
 							<li class="disabled hidden-phone">
-								<a>... {% blocktrans %}of {{ page_obj.paginator.num_pages }}{{page_obj.paginator}}{% endblocktrans %}</a>
+								<a>... {% blocktrans with total_pages=paginator.num_pages %}of {{ total_pages }}{% endblocktrans %}</a>
 							</li>
 
 							{% if page_obj.has_next %}
