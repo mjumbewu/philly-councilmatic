@@ -6,10 +6,10 @@ def rel_path(*subs):
     root_path = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(root_path, *subs)
 
-DEBUG = True
-COMPRESS_ENABLED = True
+DEBUG = (os.environ.get('DEBUG', 'False').lower() == 'true')
+COMPRESS_ENABLED = not DEBUG
 TEMPLATE_DEBUG = DEBUG
-DO_DEBUG_TOOLBAR = True
+DO_DEBUG_TOOLBAR = DEBUG
 
 ADMINS = [
     (admin.split('@')[0], admin)
