@@ -20,6 +20,9 @@ import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
 ###############################################################################
 #
 # 3rd-party service configuration and keys
