@@ -20,6 +20,8 @@ import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
+ALLOWED_HOSTS = ['philly-councilmatic.herokuapp.com', 'philly.councilmatic.org']
+
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
