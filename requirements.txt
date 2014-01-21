@@ -2,7 +2,7 @@
 # The Councilmatic App
 # ====================
 Django==1.5.5
-git+git://github.com/codeforamerica/councilmatic.git@47b74d2#egg=councilmatic==git-47b74d2
+git+git://github.com/codeforamerica/councilmatic.git@1e2e687#egg=councilmatic==git-1e2e687
 gunicorn
 pyelasticsearch
 
@@ -11,6 +11,10 @@ pyelasticsearch
 # ====================
 git+git://github.com/fgregg/legistar-scrape.git@137fd47#egg=legistar-scraper==git-137fd47
 https://pypi.python.org/packages/source/p/pdfminer/pdfminer-20110515.tar.gz#md5=f3905f801ed469900d9e5af959c7631a
+git+https://github.com/abielr/mechanize.git@813ba36#egg=mechanize
+BeautifulSoup==3.2.1
+BeautifulSoup4==4.3.2
+slate==0.3
 
 # ====================
 # Heroku helpers
