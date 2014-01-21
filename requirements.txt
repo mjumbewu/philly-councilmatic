@@ -9,7 +9,7 @@ pyelasticsearch
 # ====================
 # Legistar scraping
 # ====================
-git+git://github.com/fgregg/legistar-scrape.git@5f04ebe7#egg=legistar-scraper==git-5f04ebe7
+git+git://github.com/fgregg/legistar-scrape.git@137fd47#egg=legistar-scraper==git-137fd47
 https://pypi.python.org/packages/source/p/pdfminer/pdfminer-20110515.tar.gz#md5=f3905f801ed469900d9e5af959c7631a
 
 # ====================
