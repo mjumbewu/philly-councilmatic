@@ -42,7 +42,8 @@ GOOGLE_CONSUMER_SECRET       = ''
 RECAPTCHA_PUBLIC_KEY  = ''
 RECAPTCHA_PRIVATE_KEY = ''
 
-GOOGLE_ANALYTICS_ACCOUNT = ''
+GOOGLE_ANALYTICS_ACCOUNT = os.environ.get('GOOGLE_ANALYTICS_ACCOUNT', '')
+GOOGLE_ANALYTICS_DOMAIN = os.environ.get('GOOGLE_ANALYTICS_DOMAIN', 'councilmatic.org')
 FOOTER_CONTENT = "An app by <a href='http://codeforamerica.org'>Code for America</a>."
 
 ###############################################################################
