@@ -4,6 +4,7 @@
 Django==1.5.5
 git+git://github.com/codeforamerica/councilmatic.git@032f473#egg=councilmatic==git-032f473
 gunicorn
+gevent
 pyelasticsearch
 
 # ====================
