@@ -1,3 +1,4 @@
+import datetime
 import os
 import sys
 
@@ -93,6 +94,7 @@ COMPRESS_PRECOMPILERS = (
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'j#gwlh#fyt$v-l144lw7*8ybmosn8gxo_b5tk+l2wffwr+n=s)'
+LAST_DEPLOY_DATE = datetime.datetime.now().replace(second=0, microsecond=0).isoformat()
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
