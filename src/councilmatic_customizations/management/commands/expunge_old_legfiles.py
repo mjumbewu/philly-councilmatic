@@ -30,7 +30,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         dry_run = options['dry_run']
 
-        domain_pattern = re.compile(r'http://.*([^\.+]\.[^\.+])/.*$')
+        domain_pattern = re.compile(r'^https?:\/\/.*\.([^.]+\.[^.]+)\/.*$')
         legfiles = LegFile.objects.all().order_by('id')
         prev = prev_id = prev_host = None
 
