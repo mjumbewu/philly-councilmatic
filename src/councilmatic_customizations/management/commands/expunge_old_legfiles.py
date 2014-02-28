@@ -14,7 +14,7 @@ import sys
 
 from phillyleg.models import LegFile
 
-log = logging.getLogger(__name__)
+log = logging.getLogger('councilmatic')
 
 
 class Command(BaseCommand):
