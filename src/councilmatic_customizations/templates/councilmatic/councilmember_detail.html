@@ -3,6 +3,9 @@
 {% load i18n %}
 {% load compress %}
 
+{% block title %}{{ councilmember.title }} {{ councilmember.real_name }} | {{ site.name }}{% endblock %}
+{% block description %}Recent legislation sponsored by {{ councilmember.title }} {{ councilmember.real_name }}{% endblock %}
+
 {% block load_early %}
 {% endblock %}
 
@@ -12,10 +15,10 @@
     <div class='offset1 span10'>
       <div class="content">
         <div class="row-fluid">
-          <img class='span2 img-polaroid' alt="{{ councilmember.name }}" src="{{STATIC_URL}}{{ councilmember.headshot }}">
+          <img class='span2 img-polaroid' alt="{{ councilmember.real_name }}" src="{{STATIC_URL}}{{ councilmember.headshot }}">
           <div class='span8'>
             <h1>
-              {{ councilmember.name }}
+              {{ councilmember.real_name }}
               <small><br />{{ councilmember.title }}</small>
             </h1>
 
@@ -48,11 +51,11 @@
           <div class="councilmember-tenures span6">
             {% for tenure in councilmember.tenures.all %}
             <div class="councilmember-districts">
-              <h2>
+              <h2> 
               {% if tenure.at_large %}
                 {% trans "At Large" %}
               {% else %}
-                {% blocktrans %}Representing District {{ tenure.district.id }}{% endblocktrans %}
+                {% blocktrans with district=tenure.district %}Representing {{ district }}{% endblocktrans %}
               {% endif %}
 
               {% if tenure.president %}
@@ -61,9 +64,9 @@
               </h2>
 
               {% if tenure.end %}
-                <h3>{% blocktrans %}From {{ tenure.begin }} until {{ tenure.end }}{% endblocktrans %}</h3>
+                <h3>{% blocktrans with begin=tenure.begin.year end=tenure.end.year %}From {{ begin }} until {{ end }}{% endblocktrans %}</h3>
               {% else %}
-                <h3>{% blocktrans %}Since {{ tenure.begin }}{% endblocktrans %}</h3>
+                <h3>{% blocktrans with begin=tenure.begin.year %}Since {{ begin }}{% endblocktrans %}</h3>
               {% endif %}
 
               {% if not tenure.at_large %}
