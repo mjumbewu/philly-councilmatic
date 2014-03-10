@@ -1,0 +1,33 @@
+{% load subscription_labels %}
+{% load url from future %}
+
+<html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Raleway|Marcellus' rel='stylesheet' type='text/css'>
+</head>
+
+<body style="font-size: 14px; color: #333333; font-family: 'Raleway', sans-serif;">
+  <h1 style="background: url(http://{{ SITE.domain }}/static/philly/headerBG.jpg); font-family: 'Marcellus', serif; color: white; background-color: #930F27; font-size: 38.5px; padding: 5px 0px; text-align: center;">
+    <a href="http://{{ SITE.domain }}/">
+      <img src="http://{{ SITE.domain }}/static/philly/councilmatic-web.png" alt="Philly Councilmatic">
+    </a>
+  </h1>
+
+  <p>You are subscribed to the following feeds:</p>
+  <ul>
+    {% for subscription in subscriptions %}
+    <li>{{ subscription|subscription_title:library }}</li>
+    {% endfor %}
+  </ul>
+
+  {% for item, item_updates in content_updates %}
+  <hr>
+
+  {% if item.object %}{% include 'subscriptions/item.html' with item=item.object %}{% else %}{% include 'subscriptions/item.html' %}{% endif %}
+  {% endfor %}
+
+  <hr>
+
+  <div style="text-align: right; font-size: 0.8em"><p>To manage your subscriptions, visit <a href="http://{{ SITE.domain }}{% url 'subscription_list' %}">http://{{ SITE.domain }}{% url 'subscription_list' %}</a>. Reply to this email to send feedback, bug reports our way. Thanks!</p>
+<body>
+</html>

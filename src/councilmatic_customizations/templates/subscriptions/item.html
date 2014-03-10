@@ -1,0 +1,8 @@
+
+<p><a href="http://{{ SITE.domain }}{{ item.get_absolute_url }}">{{ item.type|safe|upper }} {{ item.id }}</a></p>
+
+{% for label, value in item_updates %}
+<p>{{ label|safe }}: {{ value|safe }}</p>
+{% endfor %}
+
+<p>More at <a href="http://{{ SITE.domain }}{{ item.get_absolute_url }}">http://{{ SITE.domain }}{{ item.get_absolute_url }}</a></p>
