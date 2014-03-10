@@ -36,12 +36,14 @@
         <h4>Description</h4>
         <p>{{ object.title|linebreaksbr }}</p>
 
-        <p>Read the full {{legfile.type}}:
-        {% for attachment in object.attachments.all %}
-            <a href="{{ attachment.url }}">{{ attachment.description }}</a>
-        {% empty %}
-          <p>(No attachments)</p>
-        {% endfor %}
+        {% with attachments=object.attachments.all %}
+          {% if attachments %}
+            <p>Read the full {{legfile.type}}:
+            {% for attachment in attachments %}
+              <a href="{{ attachment.url }}">{{ attachment.description }}</a>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
 	</p>
 
         <h4>Actions</h4>
