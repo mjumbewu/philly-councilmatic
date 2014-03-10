@@ -2,7 +2,7 @@
 # The Councilmatic App
 # ====================
 Django==1.5.5
-git+git://github.com/codeforamerica/councilmatic.git@baa3444#egg=councilmatic==git-baa3444
+git+git://github.com/codeforamerica/councilmatic.git@bd300e2#egg=councilmatic==git-bd300e2
 gunicorn
 gevent
 pyelasticsearch
