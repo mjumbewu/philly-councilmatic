@@ -20,10 +20,16 @@ import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
-ALLOWED_HOSTS = ['philly-councilmatic.herokuapp.com', 'philly.councilmatic.org', 'www.councilmatic.org']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.postmarkapp.com')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() == 'true'
 
 ###############################################################################
 #
@@ -65,7 +71,7 @@ LEGISLATION = {
         'sponsor_links': False,
 
         # Label overrides
-        # --------------- 
+        # ---------------
         'id_label': 'File #',
         'controlling_body_label': 'In control',
         'intro_date_label': 'File Created',
