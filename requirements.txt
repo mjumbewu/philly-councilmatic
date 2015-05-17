@@ -2,10 +2,10 @@
 # The Councilmatic App
 # ====================
 Django==1.5.5
-git+git://github.com/codeforamerica/councilmatic.git@fb5157b#egg=councilmatic==git-fb5157b
-gunicorn
-gevent
-pyelasticsearch
+git+git://github.com/codeforamerica/councilmatic.git@1d403e2#egg=councilmatic==git-1d403e2
+gunicorn==18.0
+gevent==1.0
+pyelasticsearch==0.6.1
 
 # ====================
 # Legistar scraping
@@ -20,5 +20,10 @@ slate==0.3
 # ====================
 # Heroku helpers
 # ====================
-django-toolbelt  # For dj-database-url, dj-static, psycopg2, gunicorn, ...
+django-toolbelt==0.0.1  # For dj-database-url, dj-static, psycopg2, gunicorn, ...
 django-debug-toolbar==0.11.0
+
+# ====================
+# Error reporting
+# ====================
+raven==5.3.1
