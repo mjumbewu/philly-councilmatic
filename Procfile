@@ -1,1 +1,1 @@
-web: gunicorn heroku_wsgi --workers 4 --bind 0.0.0.0:$PORT --worker-class gevent
+web: gunicorn heroku_wsgi --workers 4 --bind 0.0.0.0:$PORT
