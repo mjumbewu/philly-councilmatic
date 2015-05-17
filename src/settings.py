@@ -185,6 +185,7 @@ COMMUNITY_APPS = (
     'rest_framework',
     'debug_toolbar',
     'mustachejs',
+    'raven.contrib.django.raven_compat',
 )
 
 COUNCILMATIC_APPS = (

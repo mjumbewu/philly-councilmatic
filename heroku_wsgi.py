@@ -8,5 +8,10 @@ sys.path.insert(0, CM)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 import django.core.handlers.wsgi
+application = django.core.handlers.wsgi.WSGIHandler()
+
+from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
+application = Sentry(application)
+
 from dj_static import Cling
-application = Cling(django.core.handlers.wsgi.WSGIHandler())
+application = Cling(application)
