@@ -7,3 +7,10 @@ settings_deployment.py
 # Collected Static Files
 static/**
 **/static/images/ocd-person/*.jpg
+
+# Caches
+__pycache__
+
+# virtualenv
+env/
+
