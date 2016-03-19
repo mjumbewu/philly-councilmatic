@@ -70,11 +70,9 @@ SEARCH_PLACEHOLDER_TEXT = 'Search' # e.g. 'police, zoning, O2015-7825, etc.'
 # these should live in CITY_APP/static/
 IMAGES = {
     'favicon': 'images/favicon.ico',
-    'logo': 'images/logo.png',
+    'logo': 'images/LibertyBell.svg',
+    # TODO; make logo-lg.png configurable
 }
-
-
-
 
 # THE FOLLOWING ARE VOCAB SETTINGS RELEVANT TO DATA MODELS, LOGIC
 # (this is diff from VOCAB above, which is all for the front end)
