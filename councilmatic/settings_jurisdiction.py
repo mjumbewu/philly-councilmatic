@@ -5,23 +5,20 @@
 ###############################
 
 OCD_CITY_COUNCIL_ID = 'ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a'
-CITY_COUNCIL_NAME = 'Chicago City Council'
+CITY_COUNCIL_NAME = 'Philadelphia City Council'
 OCD_JURISDICTION_ID = 'ocd-jurisdiction/country:us/state:il/place:chicago/government'
 LEGISLATIVE_SESSIONS = ['2007', '2011', '2015'] # the last one in this list should be the current legislative session
-CITY_NAME = 'Chicago'
-CITY_NAME_SHORT = 'Chicago'
+CITY_NAME = 'Philadelphia'
+CITY_NAME_SHORT = 'Philly'
 
 # VOCAB SETTINGS FOR FRONT-END DISPLAY
 CITY_VOCAB = {
-    'MUNICIPAL_DISTRICT': 'Ward',       # e.g. 'District'
-    'SOURCE': 'Chicago City Clerk',
-    'COUNCIL_MEMBER': 'Alderman',       # e.g. 'Council Member'
-    'COUNCIL_MEMBERS': 'Aldermen',      # e.g. 'Council Members'
-    'EVENTS': 'Meetings',               # label for the events listing, e.g. 'Events'
+    'MUNICIPAL_DISTRICT': 'Ward',         # e.g. 'District'
+    'SOURCE': 'City of Philadelphia',
+    'COUNCIL_MEMBER': 'Council Member',   # e.g. 'Council Member'
+    'COUNCIL_MEMBERS': 'Council Members', # e.g. 'Council Members'
+    'EVENTS': 'Meetings',                 # label for the events listing, e.g. 'Events'
 }
-
-APP_NAME = 'chicago'
-
 
 #########################
 # The rest are optional #
@@ -29,8 +26,8 @@ APP_NAME = 'chicago'
 
 # this is for populating meta tags
 SITE_META = {
-    'site_name' : '',       # e.g. 'Chicago Councilmatc'
-    'site_desc' : '',       # e.g. 'City Council, demystified. Keep tabs on Chicago legislation, aldermen, & meetings.'
+    'site_name' : 'Philadelphia Councilmatic',       # e.g. 'Chicago Councilmatc'
+    'site_desc' : 'City Council, demystified. Keep tabs on Philadelphia legislation, council members, & meetings.',       # e.g. 'City Council, demystified. Keep tabs on Chicago legislation, aldermen, & meetings.'
     'site_author' : '',     # e.g. 'DataMade'
     'site_url' : '',        # e.g. 'https://chicago.councilmatic.org'
     'twitter_site': '',     # e.g. '@DataMadeCo'
@@ -50,7 +47,7 @@ BOUNDARY_SET = ''           # e.g. 'chicago-wards-2015'
 # this is for configuring a map of council districts using data from the posts
 # set MAP_CONFIG = None to hide map
 MAP_CONFIG = {
-    'center': [41.8369, -87.6847],
+    'center': [39.952642, -75.163382],
     'zoom': 10,
     'color': "#54afe8",
     'highlight_color': "#C00000",
@@ -66,11 +63,11 @@ FOOTER_CREDITS = [
 ]
 
 # this is the default text in search bars
-SEARCH_PLACEHOLDER_TEXT = '' # e.g. 'police, zoning, O2015-7825, etc.'
+SEARCH_PLACEHOLDER_TEXT = 'Search' # e.g. 'police, zoning, O2015-7825, etc.'
 
 
 
-# these should live in APP_NAME/static/
+# these should live in CITY_APP/static/
 IMAGES = {
     'favicon': 'images/favicon.ico',
     'logo': 'images/logo.png',
@@ -89,7 +86,7 @@ CITY_COUNCIL_MEETING_NAME = 'City Council'
 # this is the name of the role of committee chairs, e.g. 'CHAIRPERSON' or 'Chair'
 # as stored in legistar
 # if this is set, committees will display chairs
-COMMITTEE_CHAIR_TITLE = 'Chairman'
+COMMITTEE_CHAIR_TITLE = 'Chairperson'
 
 # this is the anme of the role of committee members,
 # as stored in legistar
