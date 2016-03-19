@@ -2,12 +2,25 @@
 
 import os
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+CITY_APP = 'yourcity'
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'replacethiswithsomethingsecret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set this to True while you are developing
 DEBUG = False
+
+
+# Internationalization / Localization
+# https://docs.djangoproject.com/en/1.8/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'America/Chicago'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -30,7 +43,7 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-# Remember to run python manage.py createcachetable so this will work! 
+# Remember to run python manage.py createcachetable so this will work!
 # developers, set your BACKEND to 'django.core.cache.backends.dummy.DummyCache'
 CACHES = {
     'default': {
@@ -48,7 +61,6 @@ DISQUS_SHORTNAME = None
 # analytics tracking code
 ANALYTICS_TRACKING_CODE = ''
 
-HEADSHOT_PATH = os.path.join(os.path.dirname(__file__), '..'
-                             '/chicago/static/images/')
+HEADSHOT_PATH = os.path.join(BASE_DIR, CITY_APP, '/static/images/')
 
 EXTRA_APPS = ()

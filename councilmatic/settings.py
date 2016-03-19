@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'haystack',
     'councilmatic_core',
-    'yourcity',
+    CITY_APP,
 )
 
 try:
@@ -87,10 +87,6 @@ WSGI_APPLICATION = 'councilmatic.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
