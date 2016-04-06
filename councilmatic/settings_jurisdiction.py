@@ -4,10 +4,10 @@
 # These settings are required #
 ###############################
 
-OCD_CITY_COUNCIL_ID = 'ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a'
+OCD_CITY_COUNCIL_ID = 'ocd-organization/b27c56d4-7a09-40a8-8051-63b2d363dfa0'
 CITY_COUNCIL_NAME = 'Philadelphia City Council'
-OCD_JURISDICTION_ID = 'ocd-jurisdiction/country:us/state:il/place:chicago/government'
-LEGISLATIVE_SESSIONS = ['2007', '2011', '2015'] # the last one in this list should be the current legislative session
+OCD_JURISDICTION_ID = 'ocd-jurisdiction/country:us/state:pa/place:philadelphia/government'
+LEGISLATIVE_SESSIONS = ['2011'] # the last one in this list should be the current legislative session
 CITY_NAME = 'Philadelphia'
 CITY_NAME_SHORT = 'Philly'
 
@@ -37,7 +37,7 @@ SITE_META = {
 LEGISTAR_URL = ''           # e.g. 'https://chicago.legistar.com/Legislation.aspx'
 
 
-# this is for the boundaries of municipal districts, to add 
+# this is for the boundaries of municipal districts, to add
 # shapes to posts & ultimately display a map with the council
 # member listing. the boundary set should be the relevant
 # slug from the ocd api's boundary service
@@ -121,7 +121,7 @@ COMMITTEE_DESCRIPTIONS = {
 ABOUT_BLURBS = {
     "COMMITTEES" :      "",
     "EVENTS":           "",
-    "COUNCIL_MEMBERS":  "",    
+    "COUNCIL_MEMBERS":  "",
 }
 
 # these override the headshots that are automatically populated
