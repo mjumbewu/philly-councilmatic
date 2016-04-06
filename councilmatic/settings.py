@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'haystack',
     'councilmatic_core',
+    'debug_toolbar',
     CITY_APP,
 )
 
