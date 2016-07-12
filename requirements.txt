@@ -10,7 +10,7 @@ pyelasticsearch==0.6.1
 # ====================
 # Legistar scraping
 # ====================
-git+git://github.com/mjumbewu/legistar-scrape.git@eb0f6a51#egg=legistar-scraper==git-eb0f6a51
+git+https://github.com/mjumbewu/legistar-scrape.git@eb0f6a5#egg=legistar-scraper==git-eb0f6a5
 https://pypi.python.org/packages/source/p/pdfminer/pdfminer-20110515.tar.gz#md5=f3905f801ed469900d9e5af959c7631a
 git+https://github.com/abielr/mechanize.git@813ba36#egg=mechanize
 BeautifulSoup==3.2.1
