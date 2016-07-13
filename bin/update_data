@@ -21,7 +21,7 @@ echoerr
 echoerr "============================================================"
 echoerr "Attempting to update the search index..."
 echoerr
-if python manage.py update_index --traceback
+if python manage.py update_index --traceback --batch-size=100
 	then echoerr "Success!"
 	else echoerr "Failed to update the search index."
 fi
