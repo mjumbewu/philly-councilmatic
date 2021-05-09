@@ -4,7 +4,7 @@
 git+https://github.com/mjumbewu/django.git@2e99f7b#egg=Django==1.5.12
 git+git://github.com/codeforamerica/councilmatic.git@1d403e2#egg=councilmatic==git-1d403e2
 psycopg2==2.8.6
-gunicorn==18.0
+gunicorn==19.5.0
 gevent==1.0
 pyelasticsearch==0.6.1
 
