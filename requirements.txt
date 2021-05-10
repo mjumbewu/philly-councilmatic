@@ -25,7 +25,7 @@ slate==0.3
 # Heroku helpers
 # ====================
 django-toolbelt==0.0.1  # For dj-database-url, dj-static, psycopg2, gunicorn, ...
-django-debug-toolbar==0.11.0
+django-debug-toolbar==1.11.1
 
 # ====================
 # Error reporting
